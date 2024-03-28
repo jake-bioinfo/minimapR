@@ -37,9 +37,9 @@ minimap2_install <- function(source_directory, verbose = TRUE) {
             local_path = install_dir, 
             progress = TRUE)}, 
             error = function(e) {
-                message("Error installing minimap2: ", e)
+                message("Error downloading minimap2: ", e)
             }, warn = function(w) {
-                message("Warning installing minimap2: ", w)
+                message("Warning downloading minimap2: ", w)
             }, finally = function(f) {
                 message("minimap2 successfully downloaded.")
             })
@@ -93,5 +93,48 @@ minimap2_check <- function(return = TRUE) {
     } else {
         message("minimap2 is not installed.",
                 "\nPlease run mm2_install() to install minimap2.")
+    }
+}
+
+samtools_install <- function(verbose = TRUE) {
+    # Check if samtools is already installed
+    if (!is.null(Sys.which("samtools"))) {
+ 
+        # Install samtools
+        if (verbose) {
+            message("Installing samtools with conda ...")
+        }
+
+        # Install samtools
+        install_out <- tryCatch({system(paste0("conda install -c bioconda -y samtools"), 
+                intern = TRUE)}, 
+            error = function(e) {
+                message("Error installing samtools: ", e)
+            }, warn = function(w) {
+                message("Warning installing samtools: ", w)
+            }, finally = function(f) {
+                message("samtools successfully installed.")
+            })
+
+        print(install_out)
+
+        # Add samtools to PATH
+        message("Samtools successfully installed.")
+
+    } else {
+        message("samtools is already installed.")
+    }
+}
+
+
+samtools_check <- function(return = TRUE) {
+    if (!is.null(Sys.which("samtools"))) {
+        message("samtools is installed.")
+        if (return == TRUE) {
+            return(Sys.which("samtools"))
+        }
+    } else {
+        message("samtools is not installed.",
+                "\nPlease run samtools_install() to install samtools.")
     }
 }
