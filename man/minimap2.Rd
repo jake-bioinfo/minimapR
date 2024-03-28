@@ -44,6 +44,7 @@ minimap2 is a long read sequencing alignment tool that is
 used to align long reads to a reference genome.
 }
 \examples{
+\dontrun{
 reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
 query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
 output_file_prefix <- system.file("extdata/yeast_sample_hifi", package = "minimapR")
@@ -54,7 +55,9 @@ bam_out <- minimap2(reference,
  preset_string = "map-hifi", 
  return = TRUE, 
  verbose = TRUE)
+}
 
+\dontrun{
 reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
 query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
 output_file_prefix <- system.file("extdata/HS_ont_out", package = "minimapR")
@@ -65,5 +68,6 @@ bam_out <- minimap2(reference,
  preset_string = "map-hifi",
  return = TRUE, 
  verbose = TRUE)
+}
 
 }

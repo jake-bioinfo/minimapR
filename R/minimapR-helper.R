@@ -14,8 +14,10 @@
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' 
 #' @examples
+#' \dontrun{
 #' install_dir <- file.path("/dir/to/install")
 #' path_line <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+#' }
 #' @export
 #' @import git2r
 minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
@@ -105,7 +107,9 @@ minimap2_check <- function(return = TRUE) {
 #' 
 #' 
 #' @examples
+#' \dontrun{
 #' samtools_install()
+#' }
 #' 
 #' @export
 samtools_install <- function(verbose = TRUE) {

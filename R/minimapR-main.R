@@ -23,6 +23,7 @@
 #' @return This function returns the line needed to add minimap2 to PATH
 #' 
 #' @examples
+#' \dontrun{
 #' reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
 #' query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
 #' output_file_prefix <- system.file("extdata/yeast_sample_hifi", package = "minimapR")
@@ -33,8 +34,10 @@
 #'  preset_string = "map-hifi", 
 #'  return = TRUE, 
 #'  verbose = TRUE)
+#' }
 #' 
 #' @examples
+#' \dontrun{
 #' reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
 #' query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
 #' output_file_prefix <- system.file("extdata/HS_ont_out", package = "minimapR")
@@ -45,6 +48,7 @@
 #'  preset_string = "map-hifi",
 #'  return = TRUE, 
 #'  verbose = TRUE)
+#' }
 #' 
 #' @export
 #' @import Rsamtools

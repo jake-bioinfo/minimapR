@@ -1,4 +1,4 @@
 ^minimapR\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^minimapR\inst\extdata$
+^inst/extdata

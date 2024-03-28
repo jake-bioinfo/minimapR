@@ -18,6 +18,8 @@ source directory}
 Install \code{minimap2} from Heng Li's github repository
 }
 \examples{
+\dontrun{
 install_dir <- file.path("/dir/to/install")
 path_line <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+}
 }

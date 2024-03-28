@@ -13,6 +13,8 @@ samtools_install(verbose = TRUE)
 Install samtools with conda
 }
 \examples{
+\dontrun{
 samtools_install()
+}
 
 }
