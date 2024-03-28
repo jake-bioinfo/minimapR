@@ -35,7 +35,7 @@
 #'  query_sequences, 
 #'  output_file,
 #'  threads = 4,
-#'  preset_string = "map-ont" 
+#'  preset_string = "map-hifi" 
 #'  return = TRUE, 
 #'  verbose = TRUE)
 #' 
@@ -43,6 +43,7 @@
 #' @import Rsamtools
 #' @import pafr
 #' @import here
+#' @import GenomeInfoDb
 minimap2 <- function(reference, 
     query_sequences, 
     output_file_prefix, 
@@ -82,7 +83,7 @@ minimap2 <- function(reference,
 
         if (return_out == TRUE) {
             bam_f <- Rsamtools::BamFile(output_bam)
-            ret <- as.data.frame(seqinfo(bam_f))
+            ret <- as.data.frame(GenomeInfoDb::seqinfo(bam_f))
             }
 
         } else {
