@@ -16,8 +16,8 @@
 #' @param a Logical value to use the preset string with the -a flag
 #' @param preset_string Preset string to use with the -x flag
 #' @param threads Number of threads to use
-#' @param ... Additional arguments to pass to minimap2
 #' @param verbose Logical value to print progress of the installation
+#' @param ... Additional arguments to pass to minimap2
 #'
 #' @return This function returns the line needed to add minimap2 to PATH
 #' 
@@ -36,7 +36,7 @@
 #'  output_file,
 #'  threads = 4,
 #'  preset_string = "map-hifi" 
-#'  return = TRUE, 
+#'  return_ = TRUE, 
 #'  verbose = TRUE)
 #' 
 #' @export
@@ -50,7 +50,7 @@ minimap2 <- function(reference,
     a = TRUE,
     preset_string = "map-hifi",
     threads = 1, 
-    return_out = FALSE,
+    return = FALSE,
     verbose = TRUE, 
     ...) {
 
@@ -64,6 +64,7 @@ minimap2 <- function(reference,
     # Output files
     output_sam <- paste0(output_file_prefix, ".sam")
     output_bam <- paste0(output_file_prefix, ".bam")
+    output_paf <- paste0(output_file_prefix, ".paf")
 
     # Check if minimap2 is installed
     if (!is.null(mini_path) && !is.null(st_path)) {
@@ -81,24 +82,24 @@ minimap2 <- function(reference,
             system(paste0(st_path, " view -bS ", output_sam, " > ", output_bam))
             system(paste0(st_path, " sort -o ", output_bam, " ", output_bam))
 
-        if (return_out == TRUE) {
+        if (return == TRUE) {
             bam_f <- Rsamtools::BamFile(output_bam)
-            ret <- as.data.frame(GenomeInfoDb::seqinfo(bam_f))
+            ret <- as.data.frame(Rsamtools::scanBam(bam_f))
             }
 
         } else {
             system(paste0(mini_path, " -x ", preset_string, 
                 " -t ", threads, " ", reference, 
-                " ", query_sequences, " -o ", output_file, 
+                " ", query_sequences, " -o ", output_paf, 
                 " ", ...))
 
-            if (return_out == TRUE) {
-                ret <- pafr::read_paf(output_file)
+            if (return == TRUE) {
+                ret <- pafr::read_paf(output_paf)
             }
         }
 
         # Return the output
-        if (return_out == TRUE) {
+        if (return == TRUE) {
             return(ret)
         }
 
