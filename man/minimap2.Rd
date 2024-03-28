@@ -57,4 +57,17 @@ bam_out <- minimap2(reference,
  verbose = TRUE)
 }
 
+\dontrun{
+reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
+query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
+output_file_prefix <- file.path("path/to/output/filename")
+bam_out <- minimap2(reference, 
+ query_sequences, 
+ output_file_prefix,
+ threads = 4,
+ preset_string = "map-hifi",
+ return = TRUE, 
+ verbose = TRUE)
+}
+
 }

@@ -40,7 +40,7 @@
 #' \dontrun{
 #' reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
 #' query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
-#' output_file_prefix <- file.path("path/to/output/filename)
+#' output_file_prefix <- file.path("path/to/output/filename")
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
 #'  output_file_prefix,
@@ -53,7 +53,6 @@
 #' @export
 #' @import Rsamtools
 #' @import pafr
-##' @import here
 minimap2 <- function(reference, 
     query_sequences, 
     output_file_prefix, 
