@@ -12,38 +12,44 @@
 #'
 #' @param reference Reference genome to align the query sequences
 #' @param query_sequences Query sequences to align to the reference genome
-#' @param output_file Output file to save the alignment results
+#' @param output_file_prefix Output file to save the alignment results
 #' @param a Logical value to use the preset string with the -a flag
 #' @param preset_string Preset string to use with the -x flag
 #' @param threads Number of threads to use
+#' @param return Logical value to return the alignment results
 #' @param verbose Logical value to print progress of the installation
 #' @param ... Additional arguments to pass to minimap2
 #'
 #' @return This function returns the line needed to add minimap2 to PATH
 #' 
-#' @example
-#' reference <- "reference.fa"
-#' query_sequences <- "query.fa"
-#' output_file <- "output.sam"
-#' minimap2(reference, query_sequences, output_file)
-#' 
-#' @example
-#' reference <- file.path(here::here("data/MT-human.fa")
-#' query_sequences <- file.path(here::here("data/MT-orang.fa")
-#' output_file <- file.path(here::here("data/MT-human-orang"))
+#' @examples
+#' reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
+#' query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
+#' output_file_prefix <- system.file("extdata/yeast_sample_hifi", package = "minimapR")
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
-#'  output_file,
+#'  output_file_prefix,
 #'  threads = 4,
-#'  preset_string = "map-hifi" 
-#'  return_ = TRUE, 
+#'  preset_string = "map-hifi", 
+#'  return = TRUE, 
+#'  verbose = TRUE)
+#' 
+#' @examples
+#' reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
+#' query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
+#' output_file_prefix <- system.file("extdata/HS_ont_out", package = "minimapR")
+#' bam_out <- minimap2(reference, 
+#'  query_sequences, 
+#'  output_file_prefix,
+#'  threads = 4,
+#'  preset_string = "map-hifi",
+#'  return = TRUE, 
 #'  verbose = TRUE)
 #' 
 #' @export
 #' @import Rsamtools
 #' @import pafr
-#' @import here
-#' @import GenomeInfoDb
+##' @import here
 minimap2 <- function(reference, 
     query_sequences, 
     output_file_prefix, 
@@ -54,12 +60,15 @@ minimap2 <- function(reference,
     verbose = TRUE, 
     ...) {
 
-    # Source helper functions
-    source(here::here("R/minimapR-helper.R"))
-
     # Get the path to the minimap2 executable
     mini_path <- Sys.which("minimap2")
     st_path <- Sys.which("samtools")
+
+    # Check if the output file prefix is a directory
+    if (!dir.exists(dirname(output_file_prefix))) {
+        message("Output directory does not exist. Creating directory...")
+        dir.create(dirname(output_file_prefix))
+    }
 
     # Output files
     output_sam <- paste0(output_file_prefix, ".sam")

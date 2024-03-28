@@ -16,6 +16,6 @@ This function returns the path of minimap2 if installed
 Check if minimap2 is installed
 }
 \examples{
-minimap2_check(return == TRUE)
+minimap2_check(return = TRUE)
 
 }

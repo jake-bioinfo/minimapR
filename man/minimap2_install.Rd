@@ -4,19 +4,18 @@
 \alias{minimap2_install}
 \title{minimap2_install}
 \usage{
-minimap2_install(source_directory, verbose = TRUE)
+minimap2_install(source_directory, verbose = TRUE, return = FALSE)
 }
 \arguments{
 \item{source_directory}{Source directory to install minimap2. Do not include minimap2 name in the
 source directory}
 
 \item{verbose}{Logical value to print progress of the installation}
-}
-\value{
-This function returns the line needed to add minimap2 to PATH
+
+\item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
 }
 \description{
-Install minimap2 from Heng Li's github repository
+Install \code{minimap2} from Heng Li's github repository
 }
 \examples{
 install_dir <- file.path("/dir/to/install")

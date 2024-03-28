@@ -6,20 +6,19 @@
 ### Source directory should not include minimap2 name
 #' @title minimap2_install
 #'
-#' @description Install minimap2 from Heng Li's github repository
+#' @description Install \code{minimap2} from Heng Li's github repository
 #'
 #' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the 
 #'  source directory
 #' @param verbose Logical value to print progress of the installation
-#' 
-#' @return This function returns the line needed to add minimap2 to PATH
+#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' 
 #' @examples
 #' install_dir <- file.path("/dir/to/install")
 #' path_line <- minimap2_install(source_directory = install_dir, verbose = FALSE)
 #' @export
 #' @import git2r
-minimap2_install <- function(source_directory, verbose = TRUE) {
+minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     # Check if minimap2 is already installed
     if (!is.null(Sys.which("minimap2"))) {
         # Install minimap2
@@ -81,7 +80,7 @@ minimap2_install <- function(source_directory, verbose = TRUE) {
 #' @return This function returns the path of minimap2 if installed
 #' 
 #' @examples
-#' minimap2_check(return == TRUE)
+#' minimap2_check(return = TRUE)
 #'
 #' @export
 minimap2_check <- function(return = TRUE) {
@@ -96,6 +95,19 @@ minimap2_check <- function(return = TRUE) {
     }
 }
 
+## Install samtools with conda
+### Requires: conda
+#' @title samtools_install
+#' 
+#' @description Install samtools with conda
+#' 
+#' @param verbose Logical value to print progress of the installation
+#' 
+#' 
+#' @examples
+#' samtools_install()
+#' 
+#' @export
 samtools_install <- function(verbose = TRUE) {
     # Check if samtools is already installed
     if (!is.null(Sys.which("samtools"))) {
@@ -126,7 +138,22 @@ samtools_install <- function(verbose = TRUE) {
     }
 }
 
-
+## Checks if samtools is installed
+## If return is true then the path of the executable is returned
+##   given that samtools is installed
+#' @title samtools_check
+#' 
+#' @description Check if samtools is installed
+#' 
+#' @param return Logical value to return the path of samtools
+#' 
+#' @return This function returns the path of samtools if installed
+#' 
+#' @examples
+#' samtools_check(return = TRUE)
+#' 
+#' @export
+#' @import Rsamtools
 samtools_check <- function(return = TRUE) {
     if (!is.null(Sys.which("samtools"))) {
         message("samtools is installed.")

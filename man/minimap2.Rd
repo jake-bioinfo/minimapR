@@ -11,7 +11,7 @@ minimap2(
   a = TRUE,
   preset_string = "map-hifi",
   threads = 1,
-  return_out = FALSE,
+  return = FALSE,
   verbose = TRUE,
   ...
 )
@@ -21,17 +21,19 @@ minimap2(
 
 \item{query_sequences}{Query sequences to align to the reference genome}
 
+\item{output_file_prefix}{Output file to save the alignment results}
+
 \item{a}{Logical value to use the preset string with the -a flag}
 
 \item{preset_string}{Preset string to use with the -x flag}
 
 \item{threads}{Number of threads to use}
 
+\item{return}{Logical value to return the alignment results}
+
 \item{verbose}{Logical value to print progress of the installation}
 
 \item{...}{Additional arguments to pass to minimap2}
-
-\item{output_file}{Output file to save the alignment results}
 }
 \value{
 This function returns the line needed to add minimap2 to PATH
@@ -40,4 +42,28 @@ This function returns the line needed to add minimap2 to PATH
 This function is a wrapper for the command line tool minimap2.
 minimap2 is a long read sequencing alignment tool that is
 used to align long reads to a reference genome.
+}
+\examples{
+reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
+query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
+output_file_prefix <- system.file("extdata/yeast_sample_hifi", package = "minimapR")
+bam_out <- minimap2(reference, 
+ query_sequences, 
+ output_file_prefix,
+ threads = 4,
+ preset_string = "map-hifi", 
+ return = TRUE, 
+ verbose = TRUE)
+
+reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
+query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
+output_file_prefix <- system.file("extdata/HS_ont_out", package = "minimapR")
+bam_out <- minimap2(reference, 
+ query_sequences, 
+ output_file_prefix,
+ threads = 4,
+ preset_string = "map-hifi",
+ return = TRUE, 
+ verbose = TRUE)
+
 }
