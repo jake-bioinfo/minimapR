@@ -1,6 +1,6 @@
 Package: minimapR
 Title: R Wrapper for Minimap2
-Version: 0.0.0.90
+Version: 0.0.0.91
 Date: 2024-03-28
 Authors@R: 
     person("Jake", "Reed", , "hreed.ga@gmail.com", role = c("aut", "cre"),
@@ -11,7 +11,7 @@ Description: This is an R wrapper for minimap2 which is a long read sequencing a
 	sequencing platforms.
 	* SPECIAL NOTE Examples can only be run in installing from github
 License: MIT + file LICENSE
-Depends: Rsamtools, git2r, pafr, here  
+Depends: Rsamtools, git2r, pafr 
 URL: https://github.com/jake-bioinfo/minimapR
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
