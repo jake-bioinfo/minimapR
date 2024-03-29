@@ -7,8 +7,8 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8384-3593"))
 Author: Jake Reed [aut, cre] (<https://orcid.org/0000-0002-8384-3593>)
 Maintainer: Jake Reed <hreed.ga@gmail.com>
-Description: This is an R wrapper for Minimap2 which is a long read sequencing alignment tool. 
-	minimap2 is the gold standard long read aligner for Pacbio and Oxford Nanopore Technologies 
+Description: MinimapR is an R wrapper for Minimap2 which is a long read sequencing alignment tool.
+	Minimap2 is a very valuable long read aligner for the Pacbio and Oxford Nanopore Technologies 
 	sequencing platforms. *SPECIAL NOTE Examples can only be run from Github installation.
 License: MIT + file LICENSE
 Depends: Rsamtools, git2r, pafr 
