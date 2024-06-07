@@ -8,11 +8,14 @@ minimap2_install(source_directory, verbose = TRUE, return = FALSE)
 }
 \arguments{
 \item{source_directory}{Source directory to install minimap2. Do not include minimap2 name in the
-source directory}
+source directoryro}
 
 \item{verbose}{Logical value to print progress of the installation}
 
 \item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
+}
+\value{
+Character value that is the path of the installed 'minimap2' tool.
 }
 \description{
 Install \code{minimap2} from Heng Li's github repository
@@ -20,6 +23,6 @@ Install \code{minimap2} from Heng Li's github repository
 \examples{
 \dontrun{
 install_dir <- file.path("/dir/to/install")
-path_line <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
 }
 }
