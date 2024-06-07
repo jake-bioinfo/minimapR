@@ -9,21 +9,14 @@
 #' @description Install \code{minimap2} from Heng Li's github repository
 #'
 #' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
-<<<<<<< HEAD
-#'  source directoryro
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @returns Character value that is the path of the installed 'minimap2' tool.
-=======
 #'  source directory
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #'
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
 #' @examples
 #' \dontrun{
 #' install_dir <- file.path("/dir/to/install")
-#' minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+#' path_line <- minimap2_install(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
 #' @import git2r
@@ -41,11 +34,6 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         }
 
         # Git clone minimap
-<<<<<<< HEAD
-        download_out <- tryCatch({git2r::clone(url = "https://github.com/lh3/minimap2",
-            local_path = install_dir,
-            progress = TRUE)},
-=======
         download_out <- tryCatch(
             {
                 git2r::clone(
@@ -54,7 +42,6 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
                     progress = TRUE
                 )
             },
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
             error = function(e) {
                 stop("Error downloading minimap2: ", e)
             },
@@ -70,14 +57,10 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         print(download_out)
 
         # Install minimap2
-<<<<<<< HEAD
-        install_out <- tryCatch({system(paste0("cd ", install_dir, " && make"), intern = TRUE)},
-=======
         install_out <- tryCatch(
             {
                 system(paste0("cd ", install_dir, " && make"), intern = TRUE)
             },
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
             error = function(e) {
                 message("Error installing minimap2: ", e)
             },
@@ -92,15 +75,10 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         print(install_out)
 
         # Add minimap2 to PATH
-<<<<<<< HEAD
-        message("Please add minimap2 ", install_dir, " to .bashrc or respective windows path.",
-                "\n\texport PATH=$PATH:", install_dir)
-=======
         message(
             "Please add minimap2 ", install_dir, " to .bashrc or respective windows path.",
             "\n\texport PATH=$PATH:", install_dir
         )
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
 
         if (return == TRUE) {
             return(paste0("export PATH=$PATH:", install_dir))
@@ -157,27 +135,18 @@ minimap2_check <- function(return = TRUE) {
 samtools_install <- function(verbose = TRUE) {
     # Check if samtools is already installed
     if (!is.null(Sys.which("samtools"))) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
         # Install samtools
         if (verbose) {
             message("Installing samtools with conda ...")
         }
 
         # Install samtools
-<<<<<<< HEAD
-        install_out <- tryCatch({system(paste0("conda install -c bioconda -y samtools"),
-                intern = TRUE)},
-=======
         install_out <- tryCatch(
             {
                 system(paste0("conda install -c bioconda -y samtools"),
                     intern = TRUE
                 )
             },
->>>>>>> 786812f5f83650eaa78938f2bb8bef84632b9286
             error = function(e) {
                 message("Error installing samtools: ", e)
             },
