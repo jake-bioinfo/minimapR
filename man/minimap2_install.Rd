@@ -18,7 +18,7 @@ source directory. Note that this must be entered as a full path location.}
 This function returns a character.
 }
 \description{
-Install \code{minimap2} from Heng Li's github repository
+Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
 }
 \examples{
 \dontrun{

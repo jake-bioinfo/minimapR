@@ -6,7 +6,7 @@
 ### Source directory should not include minimap2 name
 #' @title minimap2_install
 #'
-#' @description Install \code{minimap2} from Heng Li's github repository
+#' @description Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
 #'
 #' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
 #'  source directory. Note that this must be entered as a full path location.
