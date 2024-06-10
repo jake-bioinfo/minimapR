@@ -8,11 +8,14 @@ minimap2_install(source_directory, verbose = TRUE, return = FALSE)
 }
 \arguments{
 \item{source_directory}{Source directory to install minimap2. Do not include minimap2 name in the
-source directory}
+source directory. Note that this must be entered as a full path location.}
 
 \item{verbose}{Logical value to print progress of the installation}
 
 \item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
+}
+\value{
+This function returns a character.
 }
 \description{
 Install \code{minimap2} from Heng Li's github repository
