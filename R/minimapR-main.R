@@ -87,6 +87,11 @@ minimap2 <- function(reference,
         
         # Run minimap2
         if (a) {
+            cat("Running minimap with the following command:\n")
+            cat(paste0(mini_path, " -ax ", preset_string, 
+                " -t ", threads, " ", reference, 
+                " ", query_sequences, " -o ", output_sam, 
+                " ", ...))
             system(paste0(mini_path, " -ax ", preset_string, 
                 " -t ", threads, " ", reference, 
                 " ", query_sequences, " -o ", output_sam, 
@@ -100,6 +105,11 @@ minimap2 <- function(reference,
             }
 
         } else {
+            cat("Running minimap with the following command:\n")
+            cat(paste0(mini_path, " -x ", preset_string, 
+                " -t ", threads, " ", reference, 
+                " ", query_sequences, " -o ", output_paf, 
+                " ", ...))
             system(paste0(mini_path, " -x ", preset_string, 
                 " -t ", threads, " ", reference, 
                 " ", query_sequences, " -o ", output_paf, 
