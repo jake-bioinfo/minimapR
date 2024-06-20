@@ -104,7 +104,8 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 #'
 #' @export
 minimap2_check <- function(return = TRUE) {
-    if (!is.null(Sys.which("minimap2")) & Sys.which("minimap2") != "") {
+    check <- !is.null(Sys.which("minimap2")) 
+    if (check) {
         message("minimap2 is installed.")
         if (return == TRUE) {
             return(Sys.which("minimap2"))
