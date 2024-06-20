@@ -23,7 +23,7 @@
 minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     # Check if minimap2 is already installed
     check <- Sys.which("minimap2") 
-    if (length(check) <= 1) {
+    if (nchar(check) <= 1) {
         # Install minimap2
         install_dir <- paste0(source_directory, "/minimap2")
         if (!dir.exists(install_dir)) {
@@ -105,7 +105,7 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 #' @export
 minimap2_check <- function(return = TRUE) {
     check <- Sys.which("minimap2")
-    if (length(check) > 1) {
+    if (nchar(check) > 1) {
         message("minimap2 is installed.")
         if (return == TRUE) {
             return(Sys.which("minimap2"))
@@ -136,7 +136,7 @@ minimap2_check <- function(return = TRUE) {
 samtools_install <- function(verbose = TRUE) {
     # Check if samtools is already installed
     check <- Sys.which("samtools")
-    if (length(check) <= 1) {
+    if (nchar(check) <= 1) {
         # Install samtools
         if (verbose) {
             message("Installing samtools with conda ...")
@@ -187,7 +187,7 @@ samtools_install <- function(verbose = TRUE) {
 #' @import Rsamtools
 samtools_check <- function(return = TRUE) {
     check <- Sys.which("samtools")
-    if (length(check) > 1) {
+    if (nchar(check) > 1) {
         message("samtools is installed.")
         if (return == TRUE) {
             return(Sys.which("samtools"))
