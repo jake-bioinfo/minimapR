@@ -134,7 +134,7 @@ minimap2_check <- function(return = TRUE) {
 #' @export
 samtools_install <- function(verbose = TRUE) {
     # Check if samtools is already installed
-    if (!is.null(Sys.which("samtools"))) {
+    if (!is.null(Sys.which("samtools")) & Sys.which("samtools") != "") {
         # Install samtools
         if (verbose) {
             message("Installing samtools with conda ...")
@@ -184,7 +184,7 @@ samtools_install <- function(verbose = TRUE) {
 #' @export
 #' @import Rsamtools
 samtools_check <- function(return = TRUE) {
-    if (!is.null(Sys.which("samtools"))) {
+    if (!is.null(Sys.which("samtools")) & Sys.which("samtools") != ""){
         message("samtools is installed.")
         if (return == TRUE) {
             return(Sys.which("samtools"))
