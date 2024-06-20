@@ -20,6 +20,28 @@
 #' }
 #' @export
 #' @import git2r
+
+
+
+is_macos <- function() {
+  Sys.info()["sysname"] == "Darwin"
+}
+
+
+# Function to install minimap2 using Homebrew on macOS
+install_minimap2 <- function() {
+  if (is_macos()) {
+    tryCatch({
+      system("brew install minimap2")
+    }, error = function(e) {
+      stop("Failed to install minimap2 using Homebrew: ", e$message)
+    })
+  } else {
+    stop("This function is only applicable for macOS.")
+  }
+}
+
+
 minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     # Check if minimap2 is already installed
     if (!is.null(Sys.which("minimap2")) & Sys.which("minimap2") != "") {
@@ -196,3 +218,4 @@ samtools_check <- function(return = TRUE) {
         )
     }
 }
+
