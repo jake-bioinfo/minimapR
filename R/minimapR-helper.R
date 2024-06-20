@@ -22,7 +22,8 @@
 #' @import git2r
 minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     # Check if minimap2 is already installed
-    if (!is.null(Sys.which("minimap2")) & Sys.which("minimap2") != "") {
+    check <- !is.null(Sys.which("minimap2")) 
+    if (check) {
         # Install minimap2
         install_dir <- paste0(source_directory, "/minimap2")
         if (!dir.exists(install_dir)) {
@@ -52,7 +53,6 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
                 message("minimap2 successfully downloaded.")
             },
         )
-
 
         print(download_out)
 
