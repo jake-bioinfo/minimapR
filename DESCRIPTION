@@ -1,15 +1,17 @@
 Package: minimapR
-Title: R Wrapper for Minimap2
+Title: R Wrapper for 'minimap2'
 Version: 0.0.0.92
 Date: 2024-03-28
 Authors@R: 
     person("Jake", "Reed", , "hreed.ga@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8384-3593"))
+    person("Pradyun", "Pulipaka", , "pradyunpulipaka@gmail.com", role = c("aut"))     
 Author: Jake Reed [aut, cre] (<https://orcid.org/0000-0002-8384-3593>)
 Maintainer: Jake Reed <hreed.ga@gmail.com>
-Description: Minimap2 is a very valuable long read aligner for the Pacbio and Oxford Nanopore Technologies
-	sequencing platforms. MinimapR is an R wrapper for Minimap2 which was developed by Heng Li <me@liheng.org>.
-	*SPECIAL NOTE Examples can only be run from Github installation.
+Description: 'minimap2' is a very valuable long read aligner for the Pacbio and Oxford Nanopore Technologies
+	sequencing platforms. minimapR is an R wrapper for 'minimap2' which was developed by Heng Li <me@liheng.org>.
+	*SPECIAL NOTE Examples can only be run from 'GitHub' installation.
+	*SPECIAL NOTE If using a Windows operating system, installation of the 'MSYS2' Linux emulator is required.
 License: MIT + file LICENSE
 Depends: Rsamtools, git2r, pafr 
 URL: https://github.com/jake-bioinfo/minimapR
