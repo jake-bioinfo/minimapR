@@ -47,7 +47,8 @@ used to align long reads to a reference genome.
 \dontrun{
 reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
 query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
-output_file_prefix <- file.path("path/to/output/filename")
+out_dir <- system.file("extdata/test_out", package = "minimapR")
+output_file_prefix <- paste0(out_dir, "/yeast_sample_hifi")
 bam_out <- minimap2(reference, 
  query_sequences, 
  output_file_prefix,
@@ -60,7 +61,8 @@ bam_out <- minimap2(reference,
 \dontrun{
 reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
 query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
-output_file_prefix <- file.path("path/to/output/filename")
+out_dir <- system.file("extdata/test_out", package = "minimapR")
+output_file_prefix <- paste0(out_dir, "/ont_hs_sample")
 bam_out <- minimap2(reference, 
  query_sequences, 
  output_file_prefix,

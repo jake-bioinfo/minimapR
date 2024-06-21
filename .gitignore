@@ -1,3 +1,5 @@
 .Rproj.user
-/test_out/test.sam
-/test_out/test.bam
+/inst/extdata/test_out/ont_hs_sample.sam
+/inst/extdata/test_out/ont_hs_sample.bam
+/inst/extdata/test_out/yeast_sample_hifi.sam
+/inst/extdata/test_out/yeast_sample_hifi.bam

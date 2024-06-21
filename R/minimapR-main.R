@@ -26,7 +26,8 @@
 #' \dontrun{
 #' reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
 #' query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
-#' output_file_prefix <- system.file("extdata/test_out/test_hifi_yeast.out", package = "minimapR")
+#' out_dir <- system.file("extdata/test_out", package = "minimapR")
+#' output_file_prefix <- paste0(out_dir, "/yeast_sample_hifi")
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
 #'  output_file_prefix,
@@ -40,7 +41,8 @@
 #' \dontrun{
 #' reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
 #' query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
-#' output_file_prefix <- system.file("extdata/test_out/test_ont_hs.out", package = "minimapR")
+#' out_dir <- system.file("extdata/test_out", package = "minimapR")
+#' output_file_prefix <- paste0(out_dir, "/ont_hs_sample")
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
 #'  output_file_prefix,
@@ -74,6 +76,8 @@ minimap2 <- function(reference,
     }
 
     # Output files
+    cat("Generating output file: ", output_file_prefix, "\n")
+    file.create(paste0(output_file_prefix, ".sam"))
     output_sam <- paste0(output_file_prefix, ".sam")
     output_bam <- paste0(output_file_prefix, ".bam")
     output_paf <- paste0(output_file_prefix, ".paf")
