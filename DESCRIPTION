@@ -1,6 +1,6 @@
 Package: minimapR
 Title: R Wrapper for 'minimap2'
-Version: 0.0.0.95
+Version: 0.0.0.96
 Date: 2024-03-28
 Authors@R: 
     person("Jake", "Reed", , "hreed.ga@gmail.com", role = c("aut", "cre"),
