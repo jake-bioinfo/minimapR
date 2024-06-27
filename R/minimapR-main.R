@@ -100,7 +100,6 @@ minimap2 <- function(reference,
                 " -t ", threads, " ", reference, 
                 " ", query_sequences, " -o ", output_sam, 
                 " ", ...))
-                
             system(paste0(st_path, " view -bS ", output_sam, " -o ", output_bam))
             system(paste0(st_path, " sort -o ", output_bam, " ", output_bam))
 
