@@ -13,7 +13,6 @@
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' @returns This function returns a character.
-<<<<<<< HEAD
 #'  source directoryro
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
@@ -68,9 +67,7 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         print(download_out)
 
         # Install minimap2
-<<<<<<< HEAD
         install_out <- tryCatch({system(paste0("cd ", install_dir, " && make"), intern = TRUE)},
-=======
         install_out <- tryCatch(
             {
                 system(paste0("cd ", install_dir, " && make"), intern = TRUE)
