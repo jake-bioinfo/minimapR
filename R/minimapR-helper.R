@@ -92,10 +92,33 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         if (return == TRUE) {
             return(paste0("export PATH=$PATH:", install_dir))
         }
+        detailed_installation()
     } else {
         message("minimap2 is already installed.")
     }
 }
+
+# Function to print OS-specific documentation
+detailed_installation <- function() {
+  if (.Platform$OS.type == "windows") {
+    cat("Documentation for Windows install:\n")
+    cat("1. Install the 'MSYS2' Linux emulator.\n")
+    cat("2. In the PowerShell, type 'pacman -Syu'\n")
+    cat("3. In the PowerShell, type 'pacman -S mingw-w64-x86_64-samtools autotools gcc'\n")
+    cat("4. In the PowerShell, type 'add C:\\msys64\\mingw64\\bin to windows PATH'\n")
+    cat("5. To install 'minimap2': \n\t")
+    cat("a) 'git clone https://github.com/lh3/minimap2' \n\t")
+    cat("b) 'cd minimap2 && make' \n")
+    cat("6. Create symbolic link to msys2 command: 'ln -s ~/minimap2/minimap2 C:/mingw64/bin'\n")
+  } else if (.Platform$OS.type == "unix" && Sys.info()['sysname'] != 'Darwin') {
+    cat("Documentation for Unix:\n")
+  } else if (Sys.info()['sysname'] == 'Darwin') {
+    cat("Documentation for macOS:\n")
+  } else {
+    cat("Documentation for other OS:\n")
+  }
+}
+
 
 ## Check path of minimap2 and if installed
 ## If return is true then the path of the executable is returned
