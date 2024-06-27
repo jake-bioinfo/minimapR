@@ -96,6 +96,7 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         if (return == TRUE) {
             return(paste0("export PATH=$PATH:", install_dir))
         }
+        detailed_installation()
     } else {
         message("minimap2 is already installed.")
     }
