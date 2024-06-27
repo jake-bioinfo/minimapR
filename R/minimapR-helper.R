@@ -42,9 +42,6 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         }
 
         # Git clone minimap
-        download_out <- tryCatch({git2r::clone(url = "https://github.com/lh3/minimap2",
-            local_path = install_dir,
-            progress = TRUE)},
         download_out <- tryCatch(
             {
                 git2r::clone(
@@ -61,13 +58,12 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
             },
             finally = function(f) {
                 message("minimap2 successfully downloaded.")
-            },
+            }
         )
 
         print(download_out)
 
         # Install minimap2
-        install_out <- tryCatch({system(paste0("cd ", install_dir, " && make"), intern = TRUE)},
         install_out <- tryCatch(
             {
                 system(paste0("cd ", install_dir, " && make"), intern = TRUE)
@@ -150,16 +146,12 @@ samtools_install <- function(verbose = TRUE) {
     # Check if samtools is already installed
     check <- Sys.which("samtools")
     if (nchar(check) <= 1) {
-=======
-    if (!is.null(Sys.which("samtools"))) {
         # Install samtools
         if (verbose) {
             message("Installing samtools with conda ...")
         }
 
         # Install samtools
-        install_out <- tryCatch({system(paste0("conda install -c bioconda -y samtools"),
-                intern = TRUE)},
         install_out <- tryCatch(
             {
                 system(paste0("conda install -c bioconda -y samtools"),
@@ -185,6 +177,7 @@ samtools_install <- function(verbose = TRUE) {
         message("samtools is already installed.")
     }
 }
+
 
 ## Checks if samtools is installed
 ## If return is true then the path of the executable is returned
