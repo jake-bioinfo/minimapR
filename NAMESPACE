@@ -2,7 +2,8 @@
 
 export(minimap2)
 export(minimap2_check)
-export(minimap2_install)
+export(minimap2_installation)
+export(mm2_install)
 export(samtools_check)
 export(samtools_install)
 import(Rsamtools)
