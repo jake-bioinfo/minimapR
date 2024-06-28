@@ -235,6 +235,7 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
   minimap2_path <- file.exists(Sys.which("minimap2"))
   if (.Platform$OS.type == "windows") {
     if (!minimap2_path) {
+      cat("minimap2 is not installed on your system, detailed installation instructions are provided below.\n")
       cat("Documentation for Windows install:\n")
       cat("1. Install the 'MSYS2' Linux emulator.\n")
       cat("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
