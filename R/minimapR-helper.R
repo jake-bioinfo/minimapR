@@ -219,7 +219,6 @@ samtools_install <- function(verbose = TRUE) {
   # Check if samtools is already installed
   check <- Sys.which("samtools")
   if (nchar(check) <= 1) {
-    =======
       if (!is.null(Sys.which("samtools"))) {
         # Install samtools
         if (verbose) {
