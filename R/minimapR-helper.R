@@ -40,7 +40,7 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         if (verbose) {
             message("Installing minimap2 to directory", install_dir, "...")
         }
-
+    if()
         # Git clone minimap
         download_out <- tryCatch(
             {
@@ -99,7 +99,7 @@ minimap2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 }
 
 # Function to print OS-specific documentation
-detailed_installation <- function() {
+installation <- function() {
   if (.Platform$OS.type == "windows") {
     cat("Documentation for Windows install:\n")
     cat("1. Install the 'MSYS2' Linux emulator.\n")
