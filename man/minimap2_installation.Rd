@@ -29,6 +29,6 @@ This function prints installation instructions specific to the user's operating 
 \examples{
 \dontrun{
 install_dir <- file.path("/dir/to/install")
-minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+minimap2_path <- minimap2_installation(source_directory = install_dir, verbose = FALSE)
 }
 }

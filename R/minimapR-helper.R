@@ -226,7 +226,7 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
       cat("1. Install the 'MSYS2' Linux emulator.\n")
       cat("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
       cat("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-x86_64-samtools autotools mingw-w64-x86_64-gcc git'\n")
-      cat("4. Add 'C:\\msys64\\mingw64\\bin' to 'MSYS2' PATH; 'MSYS2' command: echo \"export "PATH:$PATH:/mingw64/bin\\" >> ~/.bashrc\n")
+      cat("4. Add 'C:\\msys64\\mingw64\\bin' to 'MSYS2' PATH; 'MSYS2' command: echo \"export PATH:$PATH:/mingw64/bin\\\" >> ~/.bashrc\n")
       cat("5. To install 'minimap2': \n\t")
       cat("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
       cat("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")

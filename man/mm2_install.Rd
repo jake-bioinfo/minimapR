@@ -15,7 +15,7 @@ source directory. Note that this must be entered as a full path location.}
 \item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
 }
 \value{
-If run successfully, this function returns the path of the installed 'minimap2' tool (character).
+If '\code{minimap2}' is not installed, this function installs it on linux and returns the path of the installed '\code{minimap2}' tool (character).
 }
 \description{
 Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
@@ -23,6 +23,6 @@ Install \code{minimap2} from Heng Li's github repository. If using a Windows ope
 \examples{
 \dontrun{
 install_dir <- file.path("/dir/to/install")
-minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
 }
 }
