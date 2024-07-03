@@ -12,18 +12,15 @@
 #'  source directory. Note that this must be entered as a full path location.
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @returns This function returns a character.
-#'  source directoryro
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @returns Character value that is the path of the installed 'minimap2' tool.
-#'  source directory
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
+#' @return If '\code{minimap2}' is not installed, this function installs it on linux and returns the path of the installed '\code{minimap2}' tool (character). 
 #' @examples
 #' \dontrun{
 #' install_dir <- file.path("/dir/to/install")
-#' minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+#' minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
 #' @import git2r
@@ -95,13 +92,9 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 ## If return is true then the path of the executable is returned
 ##   given that minimap2 is installed
 #' @title minimap2_check
-#'
 #' @description Check if minimap2 is installed
-#'
 #' @param return Logical value to return the path of minimap2
-#'
-#' @return This function returns the path of minimap2 if installed
-#'
+#' @return If minimap2 is installed, this function returns the path of minimap2 (character).
 #' @examples
 #' minimap2_check(return = TRUE)
 #'
@@ -124,12 +117,9 @@ minimap2_check <- function(return = TRUE) {
 ## Install samtools with conda
 ### Requires: conda
 #' @title samtools_install
-#'
 #' @description Install samtools with conda
-#'
 #' @param verbose Logical value to print progress of the installation
-#'
-#'
+#' @return If '\code{samtools}' is not installed, this function installs it on linux and returns the path of the installed \code{'samtools'} tool (character).
 #' @examples
 #' \dontrun{
 #' samtools_install()
@@ -175,17 +165,14 @@ samtools_install <- function(verbose = TRUE) {
     }
   }
 }
+
 ## Checks if samtools is installed
 ## If return is true then the path of the executable is returned
 ##   given that samtools is installed
 #' @title samtools_check
-#'
 #' @description Check if samtools is installed
-#'
 #' @param return Logical value to return the path of samtools
-#'
-#' @return This function returns the path of samtools if installed
-#'
+#' @return If '\code{samtools}' is installed, this function returns the path of samtools (character).
 #' @examples
 #' samtools_check(return = TRUE)
 #'
@@ -208,9 +195,7 @@ samtools_check <- function(return = TRUE) {
 
 # Function for OS-specific documentation and installation
 #' @title minimap2_installation
-#'
 #' @description This function prints installation instructions specific to the user's operating system.
-#'
 #' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
 #'  source directory. Note that this must be entered as a full path location.
 #' @param verbose Logical value to print progress of the installation
@@ -222,11 +207,12 @@ samtools_check <- function(return = TRUE) {
 #' @returns Character value that is the path of the installed 'minimap2' tool.
 #'  source directory
 #' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2#'
+#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
+#' @return This function returns the path of the installed 'minimap2' tool (character).
 #' @examples
 #' \dontrun{
 #' install_dir <- file.path("/dir/to/install")
-#' minimap2_path <- minimap2_install(source_directory = install_dir, verbose = FALSE)
+#' minimap2_path <- minimap2_installation(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
 #' @import git2r

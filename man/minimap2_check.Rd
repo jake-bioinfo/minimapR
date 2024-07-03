@@ -10,7 +10,7 @@ minimap2_check(return = TRUE)
 \item{return}{Logical value to return the path of minimap2}
 }
 \value{
-This function returns the path of minimap2 if installed
+If minimap2 is installed, this function returns the path of minimap2 (character).
 }
 \description{
 Check if minimap2 is installed
