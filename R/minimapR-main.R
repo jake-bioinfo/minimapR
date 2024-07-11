@@ -83,7 +83,7 @@ minimap2 <- function(reference,
     output_paf <- paste0(output_file_prefix, ".paf")
 
     # Check if minimap2 is installed
-    if (!is.null(mini_path) && !is.null(st_path)) {
+    if (file.exists(mini_path) && file.exists(st_path)) {
         # Run minimap2
         if (verbose) {
             message("Running minimap2...")
@@ -131,8 +131,8 @@ minimap2 <- function(reference,
 
     } else {
         message("minimap2 or samtools is not installed.",
-                "\nPlease install minimap2 and samtools", 
-                "\n\twith the minimap2_install() function.",
-                "\n\twith the samtools_install() function.")
+                "\nPlease install minimap2 and samtools. ", 
+                "\n\t On linux run: minimap2_installation.",
+                "\n\t On Windows follow the output from running minimap2_installation." )
     }
 }
