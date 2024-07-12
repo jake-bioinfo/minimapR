@@ -11,8 +11,8 @@ Description: Wrapper for 'Minimap2'. 'Minimap2' is a very valuable long read ali
 	*SPECIAL NOTES 
 	1. Examples can only be run from 'GitHub' installation.
 	2. If using a Windows operating system, installation of the 'MSYS2' Linux emulator is required.
-    3. If using a Mac operating system, installation of 'Homebrew' is required.
-	Li, Heng (2018) <doi:https://doi.org/10.1093/bioinformatics/bty191> "Minimap2: pairwise alignment for nucleotide sequences".
+    	3. If using a Mac operating system, installation of 'Homebrew' is required.
+	Li, Heng (2018) <doi:10.1093/bioinformatics/bty191> "Minimap2: pairwise alignment for nucleotide sequences".
 License: MIT + file LICENSE
 Depends: R (>= 4.0.0), Rsamtools, git2r, pafr 
 URL: https://github.com/jake-bioinfo/minimapR
