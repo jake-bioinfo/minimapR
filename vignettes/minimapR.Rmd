@@ -1,0 +1,47 @@
+---
+title: "Using minimapR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using minimapR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+'minimapR' is a wrapper for 'Minimap2'. 'Minimap2' is a very valuable long read aligner for the Pacbio and Oxford Nanopore Technologies sequencing platforms. 'minimapR' is an R wrapper for 'minimap2' which was developed by Heng Li <me@liheng.org>. This tool aligns long reads to a reference genome and is used in many different bioinformatics workflows. 
+
+```{r setup}
+library(minimapR)
+```
+
+
+# Installation
+'minimap2' and 'samtools' must be installed on your system along with the R packages 'Rsamtools', 'git2r', and 'pafr'. 'minimap2' can be installed on various operating systems by running the following function or following the instruction from the output of the function.
+```{r installation}
+minimap2_installation("/home/jake/software")
+````
+
+check if dependencies were successfully installed.
+```{r check}
+minimap2_check()
+samtools_check()
+```
+
+# Usage
+## Downloading data for example
+```{r download}
+
+```
+
+```{r cleanup}
+# Clean up
+rm(list = ls())
+sessionInfo()
+```

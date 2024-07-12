@@ -230,7 +230,7 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
       cat("5. To install 'minimap2': \n\t")
       cat("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
       cat("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
-      cat("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/minimap2/minimap2.exe /mingw64/bin'\n")
+      cat("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/path/to/minimap2.exe /mingw64/bin'\n")
       cat("7. add C:\\msys64\\mingw64\\bin to windows PATH'\n")
     } else {
       cat("'minimap2' is already installed. \n")
