@@ -12,10 +12,6 @@
 #'  source directory. Note that this must be entered as a full path location.
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' @return If '\code{minimap2}' is not installed, this function installs it on linux and returns the path of the installed '\code{minimap2}' tool (character). 
 #' @examples
 #' \dontrun{
@@ -39,48 +35,25 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     }
 
     # Git clone minimap
-    download_out <- tryCatch({git2r::clone(
+    download_out <- try({git2r::clone(
           url = "https://github.com/lh3/minimap2",
           local_path = install_dir,
-          progress = TRUE
-        )}, 
-        error = function(e) {
-          message("Error downloading minimap2: ", e)
-        },
-        warn = function(w) {
-          message("Warning downloading minimap2: ", w)
-        },
-        finally = function(f) {
-          message("minimap2 successfully downloaded.")
-        })
-
-    if (verbose) {
-      message(download_out)
-    }
+          progress = verbose
+        )}, silent = !verbose
+    )
 
     # Install minimap2
-    install_out <- tryCatch(
+    install_out <- try(
       {
-        system(paste0("cd ", install_dir, " && make"), intern = TRUE)
-      },
-      error = function(e) {
-        message("Error installing minimap2: ", e)
-      },
-      warn = function(w) {
-        message("Warning installing minimap2: ", w)
-      },
-      finally = function(f) {
-        message("minimap2 successfully installed.")
+        system(paste0("cd ", install_dir, " && make"), intern = verbose, 
+          ignore.stdout = !verbose, ignore.stderr = !verbose)
       }
     )
 
-    if (verbose) {
-      message(install_out)
-    }
-
     # Add minimap2 to PATH
     message(
-      "Please add minimap2 ", install_dir, " to .bashrc or respective windows path.",
+      "\nminimap2 successfully installed.",
+      "\nPlease add minimap2 ", install_dir, " to .bashrc or respective windows path.",
       "\n\texport PATH=$PATH:", install_dir, "\n"
     )
 
@@ -98,6 +71,7 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 #' @title minimap2_check
 #' @description Check if minimap2 is installed
 #' @param return Logical value to return the path of minimap2
+#' @param verbose Logical value to print progress of the installation
 #' @return If minimap2 is installed, this function returns the path of minimap2 (character).
 #' @examples
 #' minimap2_check(return = TRUE)
@@ -142,21 +116,12 @@ samtools_install <- function(verbose = TRUE) {
       Sys.sleep(3)
 
       # Install samtools
-      install_out <- tryCatch(
+      install_out <- try(
         {
           system(paste0("conda install -c bioconda -y samtools"),
-            intern = TRUE
+            intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
           )
-        },
-        error = function(e) {
-          message("Error installing samtools: ", e)
-        },
-        warn = function(w) {
-          message("Warning installing samtools: ", w)
-        },
-        finally = function(f) {
-          message("samtools successfully installed.")
-        }
+        }, silent = !verbose
       )
 
       # Print output
@@ -165,9 +130,9 @@ samtools_install <- function(verbose = TRUE) {
       }
 
       # Add samtools to PATH
-      message("Samtools successfully installed.")
+      message("\nSamtools successfully installed.")
     } else {
-      message("samtools is already installed.")
+      message("\nsamtools is already installed.")
     }
   }
 }
@@ -187,13 +152,13 @@ samtools_install <- function(verbose = TRUE) {
 samtools_check <- function(return = TRUE) {
   check <- Sys.which("samtools")
   if (nchar(check) > 1) {
-    message("samtools is installed.")
+    message("\nsamtools is installed.")
     if (return == TRUE) {
       return(Sys.which("samtools"))
     }
   } else {
     message(
-      "samtools is not installed.",
+      "\nsamtools is not installed.",
       "\nPlease run samtools_install() or minimap2_installation to install samtools."
     )
   }
@@ -204,14 +169,6 @@ samtools_check <- function(return = TRUE) {
 #' @description This function prints installation instructions specific to the user's operating system.
 #' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
 #'  source directory. Note that this must be entered as a full path location.
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @returns This function returns a character.
-#'  source directoryro
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @returns Character value that is the path of the installed 'minimap2' tool.
-#'  source directory
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' @return This function returns the path of the installed 'minimap2' tool (character).
