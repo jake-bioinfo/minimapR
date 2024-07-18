@@ -88,6 +88,5 @@ y_alignment[1:5, 1:7]
 ```{r cleanup}
 # Clean up
 unlink(tmp_folder, recursive = TRUE)
-rm(list = ls())
 sessionInfo()
 ```

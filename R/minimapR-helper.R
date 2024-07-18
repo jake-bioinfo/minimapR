@@ -35,7 +35,7 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     }
 
     if (verbose) {
-      cat("Installing minimap2 to directory", install_dir, "...")
+      message("Installing minimap2 to directory", install_dir, "...")
     }
 
     # Git clone minimap
@@ -45,16 +45,18 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
           progress = TRUE
         )}, 
         error = function(e) {
-          cat("Error downloading minimap2: ", e)
+          message("Error downloading minimap2: ", e)
         },
         warn = function(w) {
-          cat("Warning downloading minimap2: ", w)
+          message("Warning downloading minimap2: ", w)
         },
         finally = function(f) {
-          cat("minimap2 successfully downloaded.")
+          message("minimap2 successfully downloaded.")
         })
 
-    print(download_out)
+    if (verbose) {
+      message(download_out)
+    }
 
     # Install minimap2
     install_out <- tryCatch(
@@ -62,20 +64,22 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
         system(paste0("cd ", install_dir, " && make"), intern = TRUE)
       },
       error = function(e) {
-        cat("Error installing minimap2: ", e)
+        message("Error installing minimap2: ", e)
       },
       warn = function(w) {
-        cat("Warning installing minimap2: ", w)
+        message("Warning installing minimap2: ", w)
       },
       finally = function(f) {
-        cat("minimap2 successfully installed.")
+        message("minimap2 successfully installed.")
       }
     )
 
-    print(install_out)
+    if (verbose) {
+      message(install_out)
+    }
 
     # Add minimap2 to PATH
-    cat(
+    message(
       "Please add minimap2 ", install_dir, " to .bashrc or respective windows path.",
       "\n\texport PATH=$PATH:", install_dir, "\n"
     )
@@ -84,7 +88,7 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
       return(paste0("export PATH=$PATH:", install_dir))
     }
   } else {
-    cat("minimap2 is already installed.")
+    message("minimap2 is already installed.")
   }
 }
 
@@ -99,15 +103,15 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 #' minimap2_check(return = TRUE)
 #'
 #' @export
-minimap2_check <- function(return = TRUE) {
+minimap2_check <- function(return = TRUE, verbose = TRUE) {
   check <- Sys.which("minimap2")
   if (nchar(check) > 1) {
-    cat("minimap2 is installed.")
+    message("minimap2 is installed.")
     if (return == TRUE) {
       return(Sys.which("minimap2"))
     }
   } else {
-    cat(
+    message(
       "minimap2 is not installed.",
       "\nPlease run minimap2_installation() to install minimap2."
     )
@@ -133,7 +137,7 @@ samtools_install <- function(verbose = TRUE) {
     if (!is.null(Sys.which("samtools"))) {
       # Install samtools
       if (verbose) {
-        cat("\nInstalling samtools with conda ...")
+        message("\nInstalling samtools with conda ...")
       }
       Sys.sleep(3)
 
@@ -145,23 +149,25 @@ samtools_install <- function(verbose = TRUE) {
           )
         },
         error = function(e) {
-          cat("Error installing samtools: ", e)
+          message("Error installing samtools: ", e)
         },
         warn = function(w) {
-          cat("Warning installing samtools: ", w)
+          message("Warning installing samtools: ", w)
         },
         finally = function(f) {
-          cat("samtools successfully installed.")
+          message("samtools successfully installed.")
         }
       )
 
       # Print output
-      print(install_out)
+      if (verbose) {
+        message(install_out)
+      }
 
       # Add samtools to PATH
-      cat("Samtools successfully installed.")
+      message("Samtools successfully installed.")
     } else {
-      cat("samtools is already installed.")
+      message("samtools is already installed.")
     }
   }
 }
@@ -181,12 +187,12 @@ samtools_install <- function(verbose = TRUE) {
 samtools_check <- function(return = TRUE) {
   check <- Sys.which("samtools")
   if (nchar(check) > 1) {
-    cat("samtools is installed.")
+    message("samtools is installed.")
     if (return == TRUE) {
       return(Sys.which("samtools"))
     }
   } else {
-    cat(
+    message(
       "samtools is not installed.",
       "\nPlease run samtools_install() or minimap2_installation to install samtools."
     )
@@ -221,23 +227,25 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
   minimap2_path <- file.exists(Sys.which("minimap2"))
   if (.Platform$OS.type == "windows") {
     if (!minimap2_path) {
-      cat("minimap2 is not installed on your system, detailed installation instructions are provided below.\n")
-      cat("Documentation for Windows install:\n")
-      cat("1. Install the 'MSYS2' Linux emulator.\n")
-      cat("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
-      cat("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-x86_64-samtools autotools mingw-w64-x86_64-gcc git'\n")
-      cat("4. Add 'C:\\msys64\\mingw64\\bin' to 'MSYS2' PATH; 'MSYS2' command: echo 'vim export PATH:$PATH:/mingw64/bin' >> ~/.bashrc\n")
-      cat("5. To install 'minimap2': \n\t")
-      cat("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
-      cat("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
-      cat("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/path/to/minimap2.exe /mingw64/bin'\n")
-      cat("7. add C:\\msys64\\mingw64\\bin to windows PATH'\n")
+      if (verbose) {
+        message("minimap2 is not installed on your system, detailed installation instructions are provided below.\n")
+        message("Documentation for Windows install:\n")
+        message("1. Install the 'MSYS2' Linux emulator.\n")
+        message("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
+        message("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-x86_64-samtools autotools mingw-w64-x86_64-gcc git'\n")
+        message("4. Add 'C:\\msys64\\mingw64\\bin' to 'MSYS2' PATH; 'MSYS2' command: echo 'vim export PATH:$PATH:/mingw64/bin' >> ~/.bashrc\n")
+        message("5. To install 'minimap2': \n\t")
+        message("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
+        message("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
+        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/path/to/minimap2.exe /mingw64/bin'\n")
+        message("7. add C:\\msys64\\mingw64\\bin to windows PATH'\n")
+      }
     } else {
-      cat("'minimap2' is already installed. \n")
+      message("'minimap2' is already installed. \n")
     }
   } else if (.Platform$OS.type == "unix" && Sys.info()["sysname"] != "Darwin") {
     if (!minimap2_path) {
-      cat("minimap2 is not installed on your system, installing now...\n")
+      message("minimap2 is not installed on your system, installing now...\n")
       Sys.sleep(3)
       file_path <- mm2_install(source_directory, verbose = verbose, return = return)
       Sys.sleep(5)
@@ -246,10 +254,10 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
         return(file_path)
       }
     } else {
-      cat("'minimap2' is already installed.\n")
+      message("'minimap2' is already installed.\n")
     }
   } else if (Sys.info()["sysname"] == "Darwin") {
-    cat("Documentation for macOS:\n")
+    message("Documentation for macOS:\n")
     # Add macOS specific instructions here
   }
 }

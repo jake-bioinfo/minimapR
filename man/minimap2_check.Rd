@@ -4,7 +4,7 @@
 \alias{minimap2_check}
 \title{minimap2_check}
 \usage{
-minimap2_check(return = TRUE)
+minimap2_check(return = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{return}{Logical value to return the path of minimap2}
