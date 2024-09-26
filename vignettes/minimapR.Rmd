@@ -65,7 +65,7 @@ h_alignment <- minimap2(reference = fa_list[1],
                         preset_string = "map-ont", 
                         threads = 4, 
                         return = TRUE, 
-                        verbose = TRUE)
+                        verbose = FALSE)
 
 # Yeast HIFI alignment
 y_out <- file.path(tmp_folder, "yeast_sample_hifi")

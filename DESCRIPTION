@@ -6,8 +6,6 @@ Authors@R:
    c(person("Jake", "Reed", , "hreed.ga@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8384-3593")),
     person("Pradyun", "Pulipaka", , "pradyunpulipaka@gmail.com", role = "ctb"))
-Author: "Jake Reed" [aut, cre], 
-    "Pradyun Pulipaka" [ctb]
 Maintainer: Jake Reed <hreed.ga@gmail.com>
 Description: Wrapper for 'Minimap2'. 'Minimap2' is a very valuable long read aligner for the Pacbio and Oxford Nanopore Technologies sequencing platforms. 'minimapR' is an R wrapper for 'minimap2' which was developed by Heng Li <me@liheng.org>. 
 	*SPECIAL NOTES 

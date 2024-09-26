@@ -76,7 +76,9 @@ minimap2 <- function(reference,
     }
 
     # Output files
-    cat("Generating output file: ", output_file_prefix, "\n")
+    if (verbose) {
+        message("Generating output file: ", output_file_prefix)
+    }
     file.create(paste0(output_file_prefix, ".sam"))
     output_sam <- paste0(output_file_prefix, ".sam")
     output_bam <- paste0(output_file_prefix, ".bam")
@@ -91,17 +93,27 @@ minimap2 <- function(reference,
         
         # Run minimap2
         if (a) {
-            cat("Running minimap with the following command:\n")
-            cat(paste0(mini_path, " -ax ", preset_string, 
-                " -t ", threads, " ", reference, 
-                " ", query_sequences, " -o ", output_sam, 
-                " ", ...))
+            if (verbose) {
+                message("Running minimap with the following command:\n")
+                message(paste0(mini_path, " -ax ", preset_string, 
+                    " -t ", threads, " ", reference, 
+                    " ", query_sequences, " -o ", output_sam, 
+                    " ", ...))
+            }
             system(paste0(mini_path, " -ax ", preset_string, 
                 " -t ", threads, " ", reference, 
                 " ", query_sequences, " -o ", output_sam, 
-                " ", ...))
-            system(paste0(st_path, " view -bS ", output_sam, " -o ", output_bam))
-            system(paste0(st_path, " sort -o ", output_bam, " ", output_bam))
+                " ", ...), intern = verbose, 
+                ignore.stdout = !verbose, 
+                ignore.stderr = !verbose)
+            system(paste0(st_path, " view -bS ", output_sam, " -o ", output_bam), 
+                intern = verbose, 
+                ignore.stdout = !verbose, 
+                ignore.stderr = !verbose)
+            system(paste0(st_path, " sort -o ", output_bam, " ", output_bam), 
+                intern = verbose, 
+                ignore.stdout = !verbose, 
+                ignore.stderr = !verbose)
 
         if (return == TRUE) {
             bam_f <- Rsamtools::BamFile(output_bam)
@@ -109,15 +121,20 @@ minimap2 <- function(reference,
             }
 
         } else {
-            cat("Running minimap with the following command:\n")
-            cat(paste0(mini_path, " -x ", preset_string, 
-                " -t ", threads, " ", reference, 
-                " ", query_sequences, " -o ", output_paf, 
-                " ", ...))
+            if (verbose) {
+                message("Running minimap with the following command:\n")
+                message(paste0(mini_path, " -x ", preset_string, 
+                    " -t ", threads, " ", reference, 
+                    " ", query_sequences, " -o ", output_sam, 
+                    " ", ...))
+            }
             system(paste0(mini_path, " -x ", preset_string, 
                 " -t ", threads, " ", reference, 
                 " ", query_sequences, " -o ", output_paf, 
-                " ", ...))
+                " ", ...), 
+                intern = verbose,
+                ignore.stdout = !verbose,
+                ignore.stderr = !verbose)
 
             if (return == TRUE) {
                 ret <- pafr::read_paf(output_paf)
@@ -130,9 +147,11 @@ minimap2 <- function(reference,
         }
 
     } else {
+        if (verbose) {
         message("minimap2 or samtools is not installed.",
                 "\nPlease install minimap2 and samtools. ", 
                 "\n\t On linux run: minimap2_installation.",
                 "\n\t On Windows follow the output from running minimap2_installation." )
+        }
     }
 }

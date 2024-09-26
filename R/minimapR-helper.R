@@ -71,13 +71,12 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
 #' @title minimap2_check
 #' @description Check if minimap2 is installed
 #' @param return Logical value to return the path of minimap2
-#' @param verbose Logical value to print progress of the installation
 #' @return If minimap2 is installed, this function returns the path of minimap2 (character).
 #' @examples
 #' minimap2_check(return = TRUE)
 #'
 #' @export
-minimap2_check <- function(return = TRUE, verbose = TRUE) {
+minimap2_check <- function(return = TRUE) {
   check <- Sys.which("minimap2")
   if (nchar(check) > 1) {
     message("minimap2 is installed.")

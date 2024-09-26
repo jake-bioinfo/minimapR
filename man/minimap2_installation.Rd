@@ -15,12 +15,6 @@ source directory. Note that this must be entered as a full path location.}
 \item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
 }
 \value{
-This function returns a character.
-source directoryro
-
-Character value that is the path of the installed 'minimap2' tool.
-source directory
-
 This function returns the path of the installed 'minimap2' tool (character).
 }
 \description{
