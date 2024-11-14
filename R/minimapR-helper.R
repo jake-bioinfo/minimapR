@@ -1,8 +1,26 @@
 ## minimapR-helper.R
 ## LICENSE: MIT License
 
+#' Clone a Git repository
+#'
+#' This function clones a Git repository to a local directory.
+#' 
+#' @param repo_url The URL of the Git repository.
+#' @param dest_dir The destination directory where the repository will be cloned.
+#' @details This function requires Git to be installed on the system.
+#' @note Ensure that Git is installed and available in the system PATH.
+#' @examples
+#' \dontrun{
+#' clone_repo("https://github.com/user/repo.git", "path/to/dest_dir")
+#' }
+#' @export
+clone_repo <- function(repo_url, dest_dir) {
+  command <- paste("git clone", repo_url, dest_dir)
+  system(command)
+}
+
+
 ## Install minimap2 from Heng Li's github repository
-### Requires: git2r
 ### Source directory should not include minimap2 name
 #' @title minimap2_install
 #'
@@ -19,7 +37,6 @@
 #' minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
-#' @import git2r
 mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
   # Check if minimap2 is already installed
   check <- Sys.which("minimap2")
@@ -35,11 +52,18 @@ mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
     }
 
     # Git clone minimap
-    download_out <- try({git2r::clone(
-          url = "https://github.com/lh3/minimap2",
-          local_path = install_dir,
-          progress = verbose
-        )}, silent = !verbose
+    # download_out <- try({git2r::clone(
+    #       url = "https://github.com/lh3/minimap2",
+    #       local_path = install_dir,
+    #       progress = verbose
+    #     )}, silent = !verbose
+    # )
+
+    # Git clone minimap2
+    download_out <- try(
+      {clone_repo(repo_url = "https://github.com/lh3/minimap2", 
+          dest_dir = install_dir
+          )}, silent = !verbose
     )
 
     # Install minimap2
@@ -177,7 +201,6 @@ samtools_check <- function(return = TRUE) {
 #' minimap2_path <- minimap2_installation(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
-#' @import git2r
 minimap2_installation <- function(source_directory, verbose = TRUE, return = FALSE) {
   # Check if minimap2 is already installed
   minimap2_path <- file.exists(Sys.which("minimap2"))
