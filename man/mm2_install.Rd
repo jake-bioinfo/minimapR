@@ -4,10 +4,10 @@
 \alias{mm2_install}
 \title{minimap2_install}
 \usage{
-mm2_install(source_directory, verbose = TRUE, return = FALSE)
+mm2_install(target_directory, verbose = TRUE, return = FALSE)
 }
 \arguments{
-\item{source_directory}{Source directory to install minimap2. Do not include minimap2 name in the
+\item{target_directory}{directory to install minimap2. Do not include minimap2 name in the
 source directory. Note that this must be entered as a full path location.}
 
 \item{verbose}{Logical value to print progress of the installation}

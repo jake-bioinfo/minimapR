@@ -26,7 +26,7 @@ clone_repo <- function(repo_url, dest_dir) {
 #'
 #' @description Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
 #'
-#' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
+#' @param target_directory directory to install minimap2. Do not include minimap2 name in the
 #'  source directory. Note that this must be entered as a full path location.
 #' @param verbose Logical value to print progress of the installation
 #' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
@@ -37,18 +37,18 @@ clone_repo <- function(repo_url, dest_dir) {
 #' minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
 #' }
 #' @export
-mm2_install <- function(source_directory, verbose = TRUE, return = FALSE) {
+mm2_install <- function(target_directory, verbose = TRUE, return = FALSE) {
   # Check if minimap2 is already installed
   check <- Sys.which("minimap2")
   if (nchar(check) <= 1) {
     # Install minimap2
-    install_dir <- paste0(source_directory, "/minimap2")
+    install_dir <- paste0(target_directory, "/minimap2")
     if (!dir.exists(install_dir)) {
       dir.create(install_dir)
     }
 
     if (verbose) {
-      message("Installing minimap2 to directory", install_dir, "...")
+      message("Installing minimap2 to directory ", install_dir, "...")
     }
 
     # Git clone minimap
