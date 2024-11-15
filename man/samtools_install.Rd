@@ -9,6 +9,9 @@ samtools_install(verbose = TRUE)
 \arguments{
 \item{verbose}{Logical value to print progress of the installation}
 }
+\value{
+If '\code{samtools}' is not installed, this function installs it on linux and returns the path of the installed \code{'samtools'} tool (character).
+}
 \description{
 Install samtools with conda
 }

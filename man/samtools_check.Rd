@@ -10,7 +10,7 @@ samtools_check(return = TRUE)
 \item{return}{Logical value to return the path of samtools}
 }
 \value{
-This function returns the path of samtools if installed
+If '\code{samtools}' is installed, this function returns the path of samtools (character).
 }
 \description{
 Check if samtools is installed
