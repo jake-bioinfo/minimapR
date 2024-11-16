@@ -141,7 +141,7 @@ samtools_install <- function(verbose = TRUE) {
       # Install samtools
       install_out <- try(
         {
-          system(paste0("conda install -c bioconda -y samtools"),
+          system(paste0("conda install -y bioconda::samtools"),
             intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
           )
         }, silent = !verbose
