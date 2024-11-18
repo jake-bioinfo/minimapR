@@ -211,13 +211,13 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
         message("Documentation for Windows install:\n")
         message("1. Install the 'MSYS2' Linux emulator.\n")
         message("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
-        message("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-x86_64-samtools autotools mingw-w64-x86_64-gcc git'\n")
-        message("4. Add 'C:\\msys64\\mingw64\\bin' to 'MSYS2' PATH; 'MSYS2' command: echo 'export PATH:$PATH:/mingw64/bin' >> ~/.bashrc\n")
+        message("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-ucrt-x86_64-samtools autotools mingw-w64-ucrt-x86_64-gcc git'\n")
+        message("4. Restart MSYS2 UCRT terminal\n")
         message("5. To install 'minimap2': \n\t")
         message("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
         message("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
-        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/path/to/minimap2.exe /mingw64/bin'\n")
-        message("7. add C:\\msys64\\mingw64\\bin to windows PATH'\n")
+        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/minimap2.exe /ucrt64/bin'\n")
+        message("7. add C:\\msys64\\ucrt64\\bin to windows PATH'\n")
       }
     } else {
       message("'minimap2' is already installed. \n")
