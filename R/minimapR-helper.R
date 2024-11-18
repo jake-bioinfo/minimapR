@@ -216,8 +216,9 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
         message("5. To install 'minimap2': \n\t")
         message("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
         message("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
-        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/minimap2.exe /ucrt64/bin'\n")
+        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/minimap2/minimap2.exe /ucrt64/bin'\n")
         message("7. add C:\\msys64\\ucrt64\\bin to windows PATH'\n")
+        message("8. Restart R session and run 'minimap2_check()'\n")
       }
     } else {
       message("'minimap2' is already installed. \n")
