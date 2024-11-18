@@ -24,13 +24,11 @@
 #' 
 #' @examples
 #' \dontrun{
-#' reference <- system.file("extdata/S288C_ref_genome.fasta", package = "minimapR")
+#' reference <- system.file("extdata/S288C_ref_genome.fasta.gz", package = "minimapR")
 #' query_sequences <- system.file("extdata/yeast_sample_hifi.fastq.gz", package = "minimapR")
-#' out_dir <- system.file("extdata/test_out", package = "minimapR")
-#' output_file_prefix <- paste0(out_dir, "/yeast_sample_hifi")
+#' # Warning: not setting output_file_prefix will generate the output in the current working directory
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
-#'  output_file_prefix,
 #'  threads = 4,
 #'  preset_string = "map-hifi", 
 #'  return = TRUE, 
@@ -39,13 +37,11 @@
 #' 
 #' @examples
 #' \dontrun{
-#' reference <- system.file("extdata/GRCh38_chr1_50m.fa", package = "minimapR")
+#' reference <- system.file("extdata/GRCh38_chr1_130k.fa.gz", package = "minimapR")
 #' query_sequences <- system.file("extdata/ont_hs_sample.fastq.gz", package = "minimapR")
-#' out_dir <- system.file("extdata/test_out", package = "minimapR")
-#' output_file_prefix <- paste0(out_dir, "/ont_hs_sample")
+#' # Warning: not setting output_file_prefix will generate the output in the current working directory
 #' bam_out <- minimap2(reference, 
 #'  query_sequences, 
-#'  output_file_prefix,
 #'  threads = 4,
 #'  preset_string = "map-hifi",
 #'  return = TRUE, 
@@ -57,7 +53,7 @@
 #' @import pafr
 minimap2 <- function(reference, 
     query_sequences, 
-    output_file_prefix, 
+    output_file_prefix = "minimap2_out", 
     a = TRUE,
     preset_string = "map-hifi",
     threads = 1, 
