@@ -1,7 +1,7 @@
 Package: minimapR
 Title: Wrapper for 'minimap2'
 Version: 0.0.1.1
-Date: 2025-0205
+Date: 2025-02-05
 Authors@R: 
    c(person("Jake", "Reed", , "hreed.ga@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8384-3593")),
