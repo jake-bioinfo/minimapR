@@ -4,25 +4,19 @@
 \alias{mm2_install}
 \title{minimap2_install}
 \usage{
-mm2_install(target_directory, verbose = TRUE, return = FALSE)
+mm2_install(verbose = TRUE)
 }
 \arguments{
-\item{target_directory}{directory to install minimap2. Do not include minimap2 name in the
-source directory. Note that this must be entered as a full path location.}
-
-\item{verbose}{Logical value to print progress of the installation}
-
-\item{return}{This logical value causes the \code{minimap2_install} function to return the path of minimap2}
+\item{verbose}{Logical value to print progress of the installation. Default is \code{TRUE}. If set to \code{FALSE}, it will suppress the output messages during installation.}
 }
 \value{
-If '\code{minimap2}' is not installed, this function installs it on linux and returns the path of the installed '\code{minimap2}' tool (character).
+If '\code{minimap2}' is not installed, this function installs it on windows, linux or macOS.
 }
 \description{
-Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
+Install \code{minimap2} using conda or mamba. Conda or mamba is required for installation.
 }
 \examples{
 \dontrun{
-install_dir <- file.path("/dir/to/install")
-minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
+mm2_install(verbose = TRUE)
 }
 }

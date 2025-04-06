@@ -1,92 +1,50 @@
 ## minimapR-helper.R
 ## LICENSE: MIT License
 
-#' Clone a Git repository
-#'
-#' This function clones a Git repository to a local directory.
-#' 
-#' @param repo_url The URL of the Git repository.
-#' @param dest_dir The destination directory where the repository will be cloned.
-#' @details This function requires Git to be installed on the system.
-#' @note Ensure that Git is installed and available in the system PATH.
-#' @examples
-#' \dontrun{
-#' clone_repo("https://github.com/user/repo.git", "path/to/dest_dir")
-#' }
-#' @export
-clone_repo <- function(repo_url, dest_dir) {
-  command <- paste("git clone", repo_url, dest_dir)
-  system(command)
-}
-
-
-## Install minimap2 from Heng Li's github repository
-### Source directory should not include minimap2 name
+## Install minimap2 using conda or mamba
 #' @title minimap2_install
 #'
-#' @description Install \code{minimap2} from Heng Li's github repository. If using a Windows operating system, installation of the MSYS2 Linux emulator is required.
-#'
-#' @param target_directory directory to install minimap2. Do not include minimap2 name in the
-#'  source directory. Note that this must be entered as a full path location.
-#' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
-#' @return If '\code{minimap2}' is not installed, this function installs it on linux and returns the path of the installed '\code{minimap2}' tool (character). 
+#' @description Install \code{minimap2} using conda or mamba. Conda or mamba is required for installation.
+#' @param verbose Logical value to print progress of the installation. Default is \code{TRUE}. If set to \code{FALSE}, it will suppress the output messages during installation.
+#' @return If '\code{minimap2}' is not installed, this function installs it on windows, linux or macOS.
 #' @examples
 #' \dontrun{
-#' install_dir <- file.path("/dir/to/install")
-#' minimap2_path <- mm2_install(source_directory = install_dir, verbose = FALSE)
+#' mm2_install(verbose = TRUE)
 #' }
 #' @export
-mm2_install <- function(target_directory, verbose = TRUE, return = FALSE) {
+mm2_install <- function(verbose = TRUE) {
   # Check if minimap2 is already installed
   check <- Sys.which("minimap2")
   if (nchar(check) <= 1) {
-    # Install minimap2
-    install_dir <- paste0(target_directory, "/minimap2")
-    if (!dir.exists(install_dir)) {
-      dir.create(install_dir)
-    }
-
-    if (verbose) {
-      message("Installing minimap2 to directory ", install_dir, "...")
-    }
-
-    # Git clone minimap
-    # download_out <- try({git2r::clone(
-    #       url = "https://github.com/lh3/minimap2",
-    #       local_path = install_dir,
-    #       progress = verbose
-    #     )}, silent = !verbose
-    # )
-
-    # Git clone minimap2
-    download_out <- try(
-      {clone_repo(repo_url = "https://github.com/lh3/minimap2", 
-          dest_dir = install_dir
-          )}, silent = !verbose
-    )
-
-    # Install minimap2
-    install_out <- try(
-      {
-        system(paste0("cd ", install_dir, " && make"), intern = verbose, 
-          ignore.stdout = !verbose, ignore.stderr = !verbose)
-      }
-    )
+     
+      # Install samtools
+      install_out <- try(
+        { # Determine which anaconda package is installed
+          if (Sys.which("conda") != "") {
+            message("Conda is available on the system.")
+            system(paste0("conda install -y bioconda::minimap2"),
+              intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
+          )
+          } else if (Sys.which("mamba") != "") {
+            message("Mamba is available on the system. Using mamba to install minimap2.")
+            system(paste0("mamba install -y bioconda::minimap2"),
+              intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
+            )
+          } else {
+            stop("Conda is not available on the system. Please install conda.")
+          }
+        }, silent = !verbose
+      )
+  } else {
+    # If minimap2 is already installed, return the path
+    message("minimap2 is already installed at: ", check)
+  }
 
     # Add minimap2 to PATH
     message(
-      "\nminimap2 successfully installed.",
-      "\nPlease add minimap2 ", install_dir, " to .bashrc or respective windows path.",
-      "\n\texport PATH=$PATH:", install_dir, "\n"
+      "\n", install_out,
+      "\nminimap2 successfully installed."
     )
-
-    if (return == TRUE) {
-      return(paste0("export PATH=$PATH:", install_dir))
-    }
-  } else {
-    message("minimap2 is already installed.")
-  }
 }
 
 ## Check path of minimap2 and if installed
@@ -98,7 +56,6 @@ mm2_install <- function(target_directory, verbose = TRUE, return = FALSE) {
 #' @return If minimap2 is installed, this function returns the path of minimap2 (character).
 #' @examples
 #' minimap2_check(return = TRUE)
-#'
 #' @export
 minimap2_check <- function(return = TRUE) {
   check <- Sys.which("minimap2")
@@ -120,7 +77,7 @@ minimap2_check <- function(return = TRUE) {
 #' @title samtools_install
 #' @description Install samtools with conda
 #' @param verbose Logical value to print progress of the installation
-#' @return If '\code{samtools}' is not installed, this function installs it on linux and returns the path of the installed \code{'samtools'} tool (character).
+#' @return If '\code{samtools}' is not installed, this function installs it returns the path of the installed \code{'samtools'} tool (character).
 #' @examples
 #' \dontrun{
 #' samtools_install()
@@ -140,10 +97,20 @@ samtools_install <- function(verbose = TRUE) {
 
       # Install samtools
       install_out <- try(
-        {
-          system(paste0("conda install -y bioconda::samtools"),
-            intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
+        { # Determine which anaconda package is installed
+          if (Sys.which("conda") != "") {
+            message("Conda is available on the system.")
+            system(paste0("conda install -y bioconda::samtools"),
+              intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
           )
+          } else if (Sys.which("mamba") != "") {
+            message("Mamba is available on the system. Using mamba to install samtools.")
+            system(paste0("mamba install -y bioconda::samtools"),
+              intern = verbose, ignore.stdout = !verbose, ignore.stderr = !verbose
+            )
+          } else {
+            stop("Conda is not available on the system. Please install conda.")
+          }
         }, silent = !verbose
       )
 
@@ -158,6 +125,7 @@ samtools_install <- function(verbose = TRUE) {
       message("\nsamtools is already installed.")
     }
   }
+  return(Sys.which("samtools")) # Return the path of samtools if installed
 }
 
 ## Checks if samtools is installed
@@ -190,18 +158,14 @@ samtools_check <- function(return = TRUE) {
 # Function for OS-specific documentation and installation
 #' @title minimap2_installation
 #' @description This function prints installation instructions specific to the user's operating system.
-#' @param source_directory Source directory to install minimap2. Do not include minimap2 name in the
-#'  source directory. Note that this must be entered as a full path location.
 #' @param verbose Logical value to print progress of the installation
-#' @param return This logical value causes the \code{minimap2_install} function to return the path of minimap2
 #' @return This function returns the path of the installed 'minimap2' tool (character).
 #' @examples
 #' \dontrun{
-#' install_dir <- file.path("/dir/to/install")
-#' minimap2_path <- minimap2_installation(source_directory = install_dir, verbose = FALSE)
+#' minimap2_installation(verbose = FALSE)
 #' }
 #' @export
-minimap2_installation <- function(source_directory, verbose = TRUE, return = FALSE) {
+minimap2_installation <- function(verbose = TRUE) {
   # Check if minimap2 is already installed
   minimap2_path <- file.exists(Sys.which("minimap2"))
   if (.Platform$OS.type == "windows") {
@@ -209,35 +173,26 @@ minimap2_installation <- function(source_directory, verbose = TRUE, return = FAL
       if (verbose) {
         message("minimap2 is not installed on your system, detailed installation instructions are provided below.\n")
         message("Documentation for Windows install:\n")
-        message("1. Install the 'MSYS2' Linux emulator.\n")
-        message("2. In the 'MSYS2' terminal, type 'pacman -Syu'\n")
-        message("3. In the 'MSYS2' terminal, type 'pacman -S mingw-w64-ucrt-x86_64-samtools autotools mingw-w64-ucrt-x86_64-gcc git'\n")
-        message("4. Restart MSYS2 UCRT terminal\n")
-        message("5. To install 'minimap2': \n\t")
-        message("a) In the 'MSYS2' terminal, type 'git clone https://github.com/lh3/minimap2' \n\t")
-        message("b) In the 'MSYS2' terminal, type 'cd minimap2 && make' \n")
-        message("6. Create symbolic link to 'minimap2', 'MSYS2' command: 'ln -s ~/minimap2/minimap2.exe /ucrt64/bin'\n")
-        message("7. add C:\\msys64\\ucrt64\\bin to windows PATH'\n")
-        message("8. Restart R session and run 'minimap2_check()'\n")
+        message("1. minimapR requires 'conda' or 'mamba' to install minimap2.\n")
+        message("2. Download and install 'Anaconda' or 'Miniconda' from https://docs.conda.io/en/latest/miniconda.html\n")
+              message("minimap2 is not installed on your system, installing now...\n")
+        Sys.sleep(3)
+        mm2_install(verbose = verbose)
+        Sys.sleep(5)
+        samtools_install(verbose = verbose)
       }
     } else {
       message("'minimap2' is already installed. \n")
     }
-  } else if (.Platform$OS.type == "unix" && Sys.info()["sysname"] != "Darwin") {
+  } else if (.Platform$OS.type == "unix" || Sys.info()["sysname"] == "Darwin") {
     if (!minimap2_path) {
       message("minimap2 is not installed on your system, installing now...\n")
       Sys.sleep(3)
-      file_path <- mm2_install(source_directory, verbose = verbose, return = return)
+      mm2_install(verbose = verbose)
       Sys.sleep(5)
       samtools_install(verbose = verbose)
-      if(return == TRUE) {
-        return(file_path)
-      }
     } else {
       message("'minimap2' is already installed.\n")
     }
-  } else if (Sys.info()["sysname"] == "Darwin") {
-    message("Documentation for macOS:\n")
-    # Add macOS specific instructions here
   }
 }

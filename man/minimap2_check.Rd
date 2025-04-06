@@ -17,5 +17,4 @@ Check if minimap2 is installed
 }
 \examples{
 minimap2_check(return = TRUE)
-
 }
